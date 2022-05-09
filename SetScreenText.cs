@@ -37,7 +37,7 @@ namespace Company.Function
             await using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                var text = "SELECT *";
+                var text = "SELECT * FROM test";
                 await using (SqlCommand cmd = new SqlCommand(text, conn))
                 {
                     // Execute the command and log the # rows affected.
