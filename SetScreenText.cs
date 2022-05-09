@@ -6,6 +6,8 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System.Net;
+using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 
 namespace Company.Function
