@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace Company.Function
 {
@@ -30,9 +31,24 @@ namespace Company.Function
             resultDict["message"] = "hei";
             resultDict["text"] = setText;
 
-            var result = JsonConvert.SerializeObject(resultDict);
+            var connectionString = "Server=tcp:twitch-plays.database.windows.net,1433;Initial Catalog=memo;Persist Security Info=False;User ID=memo;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
 
-            return new OkObjectResult(result);
+            await using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                var text = "SELECT *";
+                await using (SqlCommand cmd = new SqlCommand(text, conn))
+                {
+                    // Execute the command and log the # rows affected.
+                    var result = await cmd.ExecuteNonQueryAsync();
+                    log.LogInformation($"{result}");
+                    resultDict["sqlResult"] = $"{result}";
+                }
+            }
+
+            var resultJson = JsonConvert.SerializeObject(resultDict);
+
+            return new OkObjectResult(resultJson);
         }
     }
 }
