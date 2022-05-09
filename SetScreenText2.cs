@@ -11,9 +11,9 @@ using System.Collections.Generic;
 
 namespace Company.Function
 {
-    public static class SetScreenText
+    public static class SetScreenText2
     {
-        [FunctionName("SetScreenText")]
+        [FunctionName("SetScreenText2")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
