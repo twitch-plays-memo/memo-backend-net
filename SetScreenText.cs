@@ -34,6 +34,19 @@ namespace Company.Function
             var connectionString =
                 "Server=tcp:twitch-plays.database.windows.net,1433;Initial Catalog=memo;Persist Security Info=False;User ID=memo;Password=Plays_987123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                var text = $"UPDATE test SET value ='{setText}' WHERE id=1";
+
+                using (SqlCommand cmd = new SqlCommand(text, conn))
+                {
+                    // Execute the command and log the # rows affected.
+                    var rows = await cmd.ExecuteNonQueryAsync();
+                    log.LogInformation($"{rows} rows were updated");
+                }
+            }
+
             var s = "";
             using (var conn = new SqlConnection(connectionString))
             {
@@ -51,9 +64,6 @@ namespace Company.Function
 
                         }
                     }
-                    //// Execute the command and log the # rows affected.
-                    //var result = cmd.ExecuteNonQuery();
-                    //log.LogInformation($"{result}");
                 }
             }
 
