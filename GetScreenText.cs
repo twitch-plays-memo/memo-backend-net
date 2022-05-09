@@ -37,7 +37,7 @@ namespace memo_backend_net
                     {
                         while (reader.Read())
                         {
-                            s = reader[1];
+                            s = reader[1].ToString();
                             log.LogInformation($"{s}");
                         }
                     }
