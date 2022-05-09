@@ -31,7 +31,8 @@ namespace Company.Function
             resultDict["message"] = "hei";
             resultDict["text"] = setText;
 
-            var connectionString = "Server=tcp:twitch-plays.database.windows.net,1433;Initial Catalog=memo;Persist Security Info=False;User ID=memo;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+            var connectionString =
+                "Server=tcp:twitch-plays.database.windows.net,1433;Initial Catalog=memo;Persist Security Info=False;User ID=memo;Password=Plays_987123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
             await using (var conn = new SqlConnection(connectionString))
             {
