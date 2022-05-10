@@ -36,9 +36,9 @@ namespace memo_backend_net
                 conn.Open();
                 var text = $"UPDATE VOTES" +
                            $"SET card_id = '{card_id}'" + 
-                           $"WHERE id = {id}" + 
+                           $"WHERE id = '{id}'" + 
                            $"IF @@ROWCOUNT = 0" +
-                           $"INSERT INTO VOTES (id, card_id" +
+                           $"INSERT INTO VOTES (id, card_id)" +
                            $"VALUES('{id}', '{card_id}');";
 
                 using (SqlCommand cmd = new SqlCommand(text, conn))
