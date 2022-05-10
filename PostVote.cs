@@ -36,9 +36,11 @@ namespace memo_backend_net
                 conn.Open();
                 var table_name = "VOTES";
                 //TODO: UPDATE correct table with correct value
-                var text = $"INSERT INTO {table_name} ({id},{card_id}) " +
+                var text = $"INSERT INTO VOTES ({id},{card_id}) " +
                            $"SELECT * FROM (SELECT '{id}' AS id) AS temp" +
-                           $"WHERE NOT EXISTS (SELECT id from {table_name} WHERE id='{id}') LIMIT 1";
+                           $"WHERE NOT EXISTS (" + 
+                           $"SELECT id FROM VOTES WHERE id='{id}'" + 
+                           $") LIMIT 1;";
 
                 using (SqlCommand cmd = new SqlCommand(text, conn))
                 {

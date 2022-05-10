@@ -26,8 +26,8 @@ namespace memo_backend_net
 
             using (var conn = new SqlConnection(connectionString))
             {
+                conn.Open();
                 // Get game state
-                // TODO: SELECT to get game state
                 var commandState = "SELECT * FROM GAME_STATE";
                 using (SqlCommand cmd = new SqlCommand(commandState, conn))
                 {
@@ -42,7 +42,6 @@ namespace memo_backend_net
                 }
 
                 // Get game stats
-                // TODO: SELECT score, time, turns from the correct database table
                 var command = "SELECT * FROM GAME_STATS";
                 using (SqlCommand cmd = new SqlCommand(command, conn))
                 {
