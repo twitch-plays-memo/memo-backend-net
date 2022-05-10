@@ -34,8 +34,12 @@ namespace memo_backend_net
             using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                var text = $"INSERT INTO VOTES (id, card_id)" +
-                           $"VALUES('{id}', '{card_id}') ON DUPLICATE KEY UPDATE card_id = '{card_id}';";
+                var text = $"UPDATE VOTES" +
+                           $"SET card_id = '{card_id}'" + 
+                           $"WHERE id = {id}" + 
+                           $"IF @@ROWCOUNT = 0" +
+                           $"INSERT INTO VOTES (id, card_id" +
+                           $"VALUES('{id}', '{card_id}');";
 
                 using (SqlCommand cmd = new SqlCommand(text, conn))
                 {
