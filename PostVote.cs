@@ -35,7 +35,7 @@ namespace memo_backend_net
             {
                 conn.Open();
                 var text = $"INSERT INTO VOTES (id, card_id)" +
-                           $"VALUES(\"{id}\", \"{card_id}\") ON DUPLICATE KEY UPDATE card_id = \"{card_id}\";";
+                           $"VALUES('{id}', '{card_id}') ON DUPLICATE KEY UPDATE card_id = '{card_id}';";
 
                 using (SqlCommand cmd = new SqlCommand(text, conn))
                 {
