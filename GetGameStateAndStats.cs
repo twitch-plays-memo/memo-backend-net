@@ -54,6 +54,7 @@ namespace memo_backend_net
                             resultDict["time"] = reader["time"].ToString();
                             resultDict["turns"] = reader["turns"].ToString();
                             resultDict["total_cards"] = reader["total_cards"].ToString();
+                            resultDict["active_card_indexes"] = reader["active_card_indexes"].ToString();
                         }
                     }
                 }
