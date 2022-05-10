@@ -34,20 +34,18 @@ namespace memo_backend_net
             using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                var table_name = "VOTES";
-                //TODO: UPDATE correct table with correct value
-                var text = $"INSERT INTO VOTES ({id},{card_id}) " +
-                           $"SELECT * FROM (SELECT '{id}' AS id) AS temp" +
-                           $"WHERE NOT EXISTS (" + 
-                           $"SELECT id FROM VOTES WHERE id='{id}'" + 
-                           $") LIMIT 1;";
+                var text = $"INSERT INTO VOTES ({id},{card_id})";
+                           //$"SELECT * FROM (SELECT '{id}' AS id) AS temp" +
+                           //$"WHERE NOT EXISTS (" + 
+                           //$"SELECT id FROM VOTES WHERE id='{id}'" + 
+                           //$") LIMIT 1;";
 
                 using (SqlCommand cmd = new SqlCommand(text, conn))
                 {
                     // Execute the command and log the # rows affected.
                     var rows = await cmd.ExecuteNonQueryAsync();
                     log.LogInformation($"{rows} rows were updated");
-                    resultDict["result"] = rows.ToString();
+                    resultDict["sql_result"] = rows.ToString();
                 }
             }
 
