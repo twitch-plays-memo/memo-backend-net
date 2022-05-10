@@ -34,13 +34,8 @@ namespace memo_backend_net
             using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                var text = $"UPDATE VOTES" +
-                           $"SET card_id = '{card_id}'" + 
-                           $"WHERE id = '{id}'" + 
-                           $"IF @@ROWCOUNT = 0" +
-                           $"INSERT INTO VOTES (id, card_id)" +
-                           $"VALUES('{id}', '{card_id}');";
 
+                var text = $"UPDATE VOTES SET card_id='{card_id}' WHERE id='{id}' IF @@ROWCOUNT = 0 INSERT INTO VOTES(card_id) VALUES('{card_id}');";
                 using (SqlCommand cmd = new SqlCommand(text, conn))
                 {
                     // Execute the command and log the # rows affected.
